@@ -1,6 +1,4 @@
-#import sys
 import json
-
 from nltk import wordpunct_tokenize
 from nltk.corpus import stopwords
 
@@ -13,7 +11,7 @@ def calculate_languages_ratios(text):
     tokens = wordpunct_tokenize(text)
     words = [word.lower() for word in tokens]
 
-    # Compute per language included in nltk number of unique stopwords appearing in analyzed text
+    # count number of unique stopwords per language included in nltk
     for language in stopwords.fileids():
         stopwords_set = set(stopwords.words(language))
         words_set = set(words)
@@ -33,9 +31,10 @@ def detect_language(text):
 fname = 'tweets.json'
 with open(fname, 'r') as f:
     for line in f:
-        tweet = json.loads(line)
+        tweet_list = json.loads(line)
 
-        twe = tweet[5]['text']
-        print(twe)
-        language = detect_language(twe)
+        # get text for 5th element
+        tweet = tweet_list[5]['text']
+        print(tweet)
+        language = detect_language(twewt)
         print (language)
